@@ -1,6 +1,8 @@
 <?php
 
-class Controller_Title_Highlight
+namespace App\Controller;
+
+class TitleHighlight
 {
     public function __construct()
     {
@@ -18,6 +20,7 @@ class Controller_Title_Highlight
 
     public function add_inner_meta_box($post)
     {
+        /** @var $highlighted_text*/
         $highlighted_text = get_post_meta($post->ID, '_custom_title_highlight_text', true);
         $highlight_style = get_post_meta($post->ID, '_custom_title_highlight_style', true);
         $highlight_color = get_post_meta($post->ID, '_custom_title_highlight_color', true);
@@ -25,12 +28,13 @@ class Controller_Title_Highlight
 
         // Security field
         wp_nonce_field('custom_title_highlight_nonce', 'custom_title_highlight_nonce_field');
-
-        include_once(HL_TITLE_TEXT_PATH . 'views/metabox-view.php');
+       
+        include_once(HL_TITLE_TEXT_PATH . '/views/MetaboxView.php');
     }
 
     public function save_post($post_id)
     {
+        file_put_contents('testing.txt', json_encode($_POST));
         if (!isset($_POST['custom_title_highlight_nonce_field']) || !wp_verify_nonce($_POST['custom_title_highlight_nonce_field'], 'custom_title_highlight_nonce') || !current_user_can('edit_post', $post_id)) {
             return;
         }
@@ -92,7 +96,7 @@ class Controller_Title_Highlight
 
     public function enqueue_styles()
     {
-        wp_enqueue_style('custom-title-highlight-style', plugins_url('/assets/css/styles.css', __DIR__));
+        wp_enqueue_style('custom-title-highlight-style', HL_TITLE_TEXT_URL . 'assets/css/styles.css');
     }
 
     public function enqueue_admin_scripts()
@@ -104,7 +108,7 @@ class Controller_Title_Highlight
         $screen = get_current_screen();
 
         if ($screen->base == 'post') {
-            wp_enqueue_script('custom-title-highlight-color-picker', plugins_url('/assets/js/disclaimer.js', __DIR__), ['wp-color-picker'], filemtime(plugin_dir_path(__DIR__) . '/assets/js/disclaimer.js'), true);
+            wp_enqueue_script('custom-title-highlight-color-picker', HL_TITLE_TEXT_URL . 'assets/js/disclaimer.js', ['wp-color-picker'], filemtime(HL_TITLE_TEXT_URL . 'assets/js/disclaimer.js'), true);
         }
     }
 }

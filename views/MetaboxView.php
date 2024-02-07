@@ -19,7 +19,7 @@
 </p>
 <p>
     <label for="custom_title_highlight_color" style="font-weight: 500;">Highlight Color:</label>
-    <input type="color" id="custom_title_highlight_color" name="custom_title_highlight_color" value="<?php echo esc_attr($highlight_text_bold); ?>">
+    <input type="color" id="custom_title_highlight_color" name="custom_title_highlight_color" value="<?php echo esc_attr($highlight_color); ?>">
 </p>
 <p class="highlight-style-disclaimer" style="color: #d05813; font-size: 0.8em;">
     Note: The "circle" and "square" styles are best suited for single words.

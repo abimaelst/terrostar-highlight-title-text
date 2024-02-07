@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+$path = sprintf('%s%svendor%sautoload.php', __DIR__, DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR);
+
+// var_dump($path, ABSPATH);
+// die();
+
+require_once $path;
+
+use App\Bootstrap;
+
 /*
 Terrostar Highlight Title Text is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,44 +41,4 @@ along with Terrostar Highlight Title Text. If not, see http://www.wordpress.org/
 
 
 
-if (!defined('ABSPATH')) {
-    exit;
-}
-
-if (!class_exists('Highlight_Title_Text')) {
-    class Highlight_Title_Text
-    {
-        public function __construct()
-        {
-            $this->define_constants();
-            require_once HL_TITLE_TEXT_PATH . 'controller/class-highlight-title-text-controller.php';
-            new Controller_Title_Highlight();
-        }
-
-        public function define_constants()
-        {
-            define('HL_TITLE_TEXT_PATH', plugin_dir_path(__FILE__));
-            define('HL_TITLE_TEXT_URL', plugin_dir_url(__FILE__));
-            define('HL_TITLE_TEXT_VERSION', '1.0.0');
-        }
-
-        public static function activate()
-        {
-        }
-
-        public static function deactivate()
-        {
-        }
-
-        public static function uninstall()
-        {
-        }
-    }
-
-    if (class_exists('Highlight_Title_Text')) {
-        register_activation_hook(__FILE__, ['Highlight_Title_Text', 'activate']);
-        register_deactivation_hook(__FILE__, ['Highlight_Title_Text', 'deactivate']);
-        register_uninstall_hook(__FILE__, ['Highlight_Title_Text', 'uninstall']);
-        new Highlight_Title_Text();
-    }
-}
+new Bootstrap();
