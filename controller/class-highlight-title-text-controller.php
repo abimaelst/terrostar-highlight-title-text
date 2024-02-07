@@ -21,6 +21,7 @@ class Controller_Title_Highlight
         $highlighted_text = get_post_meta($post->ID, '_custom_title_highlight_text', true);
         $highlight_style = get_post_meta($post->ID, '_custom_title_highlight_style', true);
         $highlight_color = get_post_meta($post->ID, '_custom_title_highlight_color', true);
+        $highlight_bold = get_post_meta($post->ID, '_custom_title_highlight_bold', true);
 
         // Security field
         wp_nonce_field('custom_title_highlight_nonce', 'custom_title_highlight_nonce_field');
@@ -43,6 +44,11 @@ class Controller_Title_Highlight
         if (isset($_POST['custom_title_highlight_color'])) {
             update_post_meta($post_id, '_custom_title_highlight_color', sanitize_hex_color($_POST['custom_title_highlight_color']));
         }
+
+        if (isset($_POST['custom_title_highlight_bold'])) {
+            $is_bold = isset($_POST['custom_title_highlight_bold']) ? 1 : 0;
+            update_post_meta($post_id, '_custom_title_highlight_bold', $is_bold);
+        }
     }
 
     public function filter_the_title($title, $id = null)
@@ -58,8 +64,9 @@ class Controller_Title_Highlight
         }
 
         $style = get_post_meta(get_the_ID(), '_custom_title_highlight_style', true);
+        $color = get_post_meta(get_the_ID(), '_custom_title_highlight_color', true);
 
-        $valid_styles = ['background', 'circle', 'underline'];
+        $valid_styles = ['background', 'square', 'circle', 'underline', 'border', 'arrow'];
         if (!in_array($style, $valid_styles)) {
             $style = 'background';
         }
@@ -69,7 +76,10 @@ class Controller_Title_Highlight
         $pos = stripos($title, $highlight);
 
         if ($pos !== false) {
-            $before = "<span class='{$styleClass}'>";
+
+            $is_bold = get_post_meta(get_the_ID(), '_custom_title_highlight_bold', true);
+
+            $before =  $is_bold ? "<span class='{$styleClass} title-highlight-bold' style='--highlight-color: {$color};'>" : "<span class='{$styleClass} style='--highlight-color: {$color};''>";
             $after = "</span>";
 
             $actualText = substr($title, $pos, strlen($highlight));
@@ -91,6 +101,10 @@ class Controller_Title_Highlight
         wp_enqueue_style('wp-color-picker');
 
         // Enqueue the script to add the color picker
-        wp_enqueue_script('custom-title-highlight-color-picker', plugins_url('/assets/js/color-picker.js', __DIR__), ['wp-color-picker'], false, true);
+        $screen = get_current_screen();
+
+        if ($screen->base == 'post') {
+            wp_enqueue_script('custom-title-highlight-color-picker', plugins_url('/assets/js/disclaimer.js', __DIR__), ['wp-color-picker'], filemtime(plugin_dir_path(__DIR__) . '/assets/js/disclaimer.js'), true);
+        }
     }
 }
