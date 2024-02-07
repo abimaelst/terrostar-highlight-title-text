@@ -50,6 +50,13 @@ Dive deeper with custom CSS in your theme’s stylesheet for full control over t
 ```
 Modify .highlighted-text to match the plugin's class if it differs.
 
+## 🤝 Example
+
+<img src="https://github.com/abimaelst/terrostar-highlight-title-text/assets/49216154/370d8603-552b-4c35-aac9-a2b600d1986f" alt="Screenshot_8" style="max-width: 600px;" />
+<hr>
+<img src="https://github.com/abimaelst/terrostar-highlight-title-text/assets/49216154/fdd762e5-a821-44bf-961e-6810365efb1b" alt="Screenshot_8" style="max-width: 600px;" />
+
+
 ## 🤝 Support
 Need help? Have questions? Visit the WordPress support forums or reach out through our website for assistance.
 
