@@ -29,16 +29,20 @@ along with Terrostar Highlight Title Text. If not, see http://www.wordpress.org/
 
  **/
 
+
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!class_exists('HL_Title_Text')) {
-    class HL_Title_Text
+if (!class_exists('Highlight_Title_Text')) {
+    class Highlight_Title_Text
     {
-        function __construct()
+        public function __construct()
         {
             $this->define_constants();
+            require_once HL_TITLE_TEXT_PATH . 'controller/class-highlight-title-text-controller.php';
+            new Controller_Title_Highlight();
         }
 
         public function define_constants()
@@ -50,13 +54,10 @@ if (!class_exists('HL_Title_Text')) {
 
         public static function activate()
         {
-            update_option('rewrite_rules', '');
         }
 
         public static function deactivate()
         {
-            flush_rewrite_rules();
-            unregister_post_type('mv-slider');
         }
 
         public static function uninstall()
@@ -64,10 +65,10 @@ if (!class_exists('HL_Title_Text')) {
         }
     }
 
-    if (class_exists('HL_Title_Text')) {
-        register_activation_hook(__FILE__, ['HL_Title_Text' => 'activate']);
-        register_deactivation_hook(__FILE__, ['HL_Title_Text' => 'deactivate']);
-        register_uninstall_hook(__FILE__, ['HL_Title_Text' => 'uninstall']);
-        $mv_slider = new HL_Title_Text();
+    if (class_exists('Highlight_Title_Text')) {
+        register_activation_hook(__FILE__, ['Highlight_Title_Text', 'activate']);
+        register_deactivation_hook(__FILE__, ['Highlight_Title_Text', 'deactivate']);
+        register_uninstall_hook(__FILE__, ['Highlight_Title_Text', 'uninstall']);
+        new Highlight_Title_Text();
     }
 }
