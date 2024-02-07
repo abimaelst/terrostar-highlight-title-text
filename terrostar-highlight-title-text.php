@@ -21,6 +21,9 @@ along with Terrostar Highlight Title Text. If not, see http://www.wordpress.org/
 * Plugin URI: https://github.com/abimaelst
 * Description: Allows users to highlight words or phrases in post and page titles.
 * Version: 0.1
+* Requires at least: 6.2
+* License: GPL v2 or later
 * Author: Abimael Tavares
+* Text Domain: terrostar-highlight-title-text
 * Author URI: https://github.com/abimaelst
 **/
