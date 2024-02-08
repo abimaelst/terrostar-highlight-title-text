@@ -24,7 +24,6 @@ The **Terrostar Highlight Title Text Plugin** for WordPress is here to transform
    - Navigate to `Plugins` in your WordPress dashboard.
    - Activate "Terrostar Highlight Title Text" from the plugin list.
 
-***note:***
 <span style="color: orange;">⚠️ **Warning:** If you clone this repository, please remember to run `composer install`.</span>
 
 ```
