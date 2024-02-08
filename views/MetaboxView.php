@@ -6,7 +6,7 @@
     <label for="custom_title_highlight_style" style="font-weight: 500;">Highlight Style:</label>
     <select id="custom_title_highlight_style" name="custom_title_highlight_style" value=<?php $highlight_style; ?> style="width:85%;">
         <option value="none">None</option>
-        <option value="background" <?php selected($highlight_style, 'background'); ?>>Background</option>
+        <option value="background" <?php selected($highlight_style, 'background'); ?>><?php esc_html_e('Background', 'terrostar-highlight-title-text'); ?></option>
         <option value="square" <?php selected($highlight_style, 'square'); ?>>Square</option>
         <option value="circle" <?php selected($highlight_style, 'circle'); ?>>Circle</option>
         <option value="underline" <?php selected($highlight_style, 'underline'); ?>>Underline</option>

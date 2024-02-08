@@ -9,6 +9,7 @@ class Bootstrap
     public function __construct()
     {
         $this->defineConstants();
+        $this->loadTextDomain();
         new TitleHighlight();
     }
 
@@ -17,6 +18,17 @@ class Bootstrap
         define('HL_TITLE_TEXT_PATH', dirname(__DIR__,));
         define('HL_TITLE_TEXT_URL', plugin_dir_url(realpath(__DIR__)));
         define('HL_TITLE_TEXT_VERSION', '1.0.0');
+    }
+
+    public function loadTextDomain() 
+    {
+        $result = load_plugin_textdomain('terrostar-highlight-title-text', false, dirname(dirname(plugin_basename(__FILE__))) . '/languages');
+ 
+    if ($result === false) {
+        $locale = apply_filters('theme_locale', get_locale(), 'my_theme');
+        error_log("Could not find " . get_template_directory() . "/languages/{$locale}.mo .");
+    }
+        
     }
 
     public static function uninstall()

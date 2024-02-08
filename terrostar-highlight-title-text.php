@@ -33,6 +33,7 @@ along with Terrostar Highlight Title Text. If not, see http://www.wordpress.org/
  * License: GPL v2 or later
  * Author: Abimael Tavares
  * Text Domain: terrostar-highlight-title-text
+ * Domain Path: /languages
  * Author URI: https://github.com/abimaelst/terrostar-highlight-title-text
  **/
 

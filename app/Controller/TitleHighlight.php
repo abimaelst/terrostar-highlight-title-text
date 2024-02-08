@@ -15,7 +15,7 @@ class TitleHighlight
 
     public function addMetaBoxes()
     {
-        add_meta_box('custom_title_highlight', 'Title Highlight', [$this, 'addInnerMetaBox'], ['post', 'page'], 'side', 'high');
+        add_meta_box('custom_title_highlight', esc_html__('Title Highlight', 'terrostar-highlight-title-text'), [$this, 'addInnerMetaBox'], ['post', 'page'], 'side', 'high');
     }
 
     public function addInnerMetaBox($post)
