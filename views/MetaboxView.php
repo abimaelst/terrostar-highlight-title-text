@@ -5,6 +5,7 @@
 <p>
     <label for="custom_title_highlight_style" style="font-weight: 500;">Highlight Style:</label>
     <select id="custom_title_highlight_style" name="custom_title_highlight_style" value=<?php $highlight_style; ?> style="width:85%;">
+        <option value="none">None</option>
         <option value="background" <?php selected($highlight_style, 'background'); ?>>Background</option>
         <option value="square" <?php selected($highlight_style, 'square'); ?>>Square</option>
         <option value="circle" <?php selected($highlight_style, 'circle'); ?>>Circle</option>
@@ -19,7 +20,7 @@
 </p>
 <p>
     <label for="custom_title_highlight_color" style="font-weight: 500;">Highlight Color:</label>
-    <input type="color" id="custom_title_highlight_color" name="custom_title_highlight_color" value="<?php echo esc_attr($highlight_text_bold); ?>">
+    <input type="color" id="custom_title_highlight_color" name="custom_title_highlight_color" value="<?php echo esc_attr($highlight_color); ?>">
 </p>
 <p class="highlight-style-disclaimer" style="color: #d05813; font-size: 0.8em;">
     Note: The "circle" and "square" styles are best suited for single words.
