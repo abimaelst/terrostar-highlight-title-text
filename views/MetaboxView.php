@@ -1,5 +1,5 @@
 <p>
-    <label for="custom_title_highlight_text" style="font-weight: 500;">Highlight Text:</label>
+    <label for="custom_title_highlight_text" style="font-weight: 600; background: -webkit-linear-gradient(left, #f37121, #5ac8de); -webkit-background-clip: text; color: transparent;">Highlight Text:</label>
     <input type="text" id="custom_title_highlight_text" name="custom_title_highlight_text" value="<?php echo esc_attr($highlighted_text); ?>" style="width:100%;">
 </p>
 <p>
@@ -12,6 +12,7 @@
         <option value="underline" <?php selected($highlight_style, 'underline'); ?>>Underline</option>
         <option value="border" <?php selected($highlight_style, 'border'); ?>>Border</option>
         <option value="arrow" <?php selected($highlight_style, 'arrow'); ?>>Arrow</option>
+        <option value="pulse" <?php selected($highlight_style, 'pulse'); ?>>Pulse Animation</option>
     </select>
 </p>
 <p>

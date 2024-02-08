@@ -37,14 +37,14 @@ along with Terrostar Highlight Title Text. If not, see http://www.wordpress.org/
  * Author URI: https://github.com/abimaelst/terrostar-highlight-title-text
  **/
 
-if (!defined('ABSPATH')) {
+ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!class_exists('Bootstrap')) {
+    new Bootstrap();
+}
 
 if (class_exists('Bootstrap')) {
     register_uninstall_hook(__FILE__, ['Bootstrap', 'uninstall']);
-    new Highlight_Title_Text();
 }
-
-new Bootstrap();

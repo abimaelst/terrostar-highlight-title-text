@@ -53,7 +53,6 @@
   box-shadow: 1px 1px var(--highlight-color, yellow),
     2px 2px var(--highlight-color, yellow);
   transform: rotate(0.5deg);
-  opacity: 0.75;
 }
 
 .highlight-square::before,
@@ -92,7 +91,7 @@
   content: "";
   position: absolute;
   width: calc(100% + 4px);
-  height: 60%;
+  height: 30%;
   left: -2px;
   bottom: 0;
   z-index: -1;
@@ -137,3 +136,27 @@
   transform: rotate(180deg);
   transform-origin: center right;
 }
+
+.highlight-pulse {
+  color: var(--highlight-color, yellow);
+  animation: pulse 2s infinite;
+  animation-play-state: paused;
+}
+
+.highlight-pulse {
+  animation-play-state: running;
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0% {
+    color: var(--highlight-color, yellow);
+  }
+  50%{
+    opacity: 0;
+  }
+  100% {
+    color: var(--highlight-color, yellow);
+  }
+}
+

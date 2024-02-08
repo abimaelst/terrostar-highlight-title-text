@@ -40,30 +40,29 @@ class TitleHighlight
 
     public function saveTextToHighLight($post_id)
     {
-        file_put_contents('testing.txt', json_encode($_POST));
         if (!isset($_POST['custom_title_highlight_nonce_field']) || !wp_verify_nonce($_POST['custom_title_highlight_nonce_field'], 'custom_title_highlight_nonce') || !current_user_can('edit_post', $post_id)) {
             return;
         }
 
-        if (isset($_POST['custom_title_highlight_text'])) {
-            update_post_meta($post_id, '_custom_title_highlight_text', sanitize_text_field($_POST['custom_title_highlight_text']));
-        }
-        if (isset($_POST['custom_title_highlight_style'])) {
-            update_post_meta($post_id, '_custom_title_highlight_style', $_POST['custom_title_highlight_style']);
-        }
-        if (isset($_POST['custom_title_highlight_color'])) {
-            update_post_meta($post_id, '_custom_title_highlight_color', sanitize_hex_color($_POST['custom_title_highlight_color']));
-        }
-
-        if (isset($_POST['custom_title_highlight_bold'])) {
-            $is_bold = isset($_POST['custom_title_highlight_bold']) ? 1 : 0;
-            update_post_meta($post_id, '_custom_title_highlight_bold', $is_bold);
+        $meta_keys = [
+            'custom_title_highlight_text' => 'sanitize_text_field',
+            'custom_title_highlight_style' => null,
+            'custom_title_highlight_color' => 'sanitize_hex_color',
+            'custom_title_highlight_bold' => function($value) { return isset($value) ? 1 : 0; }, // Custom callback for boolean check
+        ];
+        
+        foreach ($meta_keys as $field => $callback) {
+            if (isset($_POST[$field])) {
+                // Apply the sanitization callback if specified
+                $value = $callback ? call_user_func($callback, $_POST[$field]) : $_POST[$field];
+                update_post_meta($post_id, "_$field", $value);
+            }
         }
     }
 
     private function addSpanWithClasses($title, $highlight, $style, $color)
     {
-        $valid_styles = ['background', 'square', 'circle', 'underline', 'border', 'arrow'];
+        $valid_styles = ['background', 'square', 'circle', 'underline', 'border', 'arrow', 'pulse'];
 
         if (!in_array($style, $valid_styles)) {
             $style = 'background';
