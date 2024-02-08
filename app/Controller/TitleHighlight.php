@@ -40,6 +40,7 @@ class TitleHighlight
 
     public function saveTextToHighLight($post_id)
     {
+        file_put_contents('testing.txt', json_encode($_POST));
         if (!isset($_POST['custom_title_highlight_nonce_field']) || !wp_verify_nonce($_POST['custom_title_highlight_nonce_field'], 'custom_title_highlight_nonce') || !current_user_can('edit_post', $post_id)) {
             return;
         }
