@@ -62,10 +62,6 @@ Modify .highlighted-text to match the plugin's class if it differs.
 <hr>
 <img src="https://github.com/abimaelst/terrostar-highlight-title-text/assets/49216154/c38bad74-b31f-4424-bd81-a3979daa4745" alt="Screenshot_8" style="max-width: 600px;" />
 
-
-![Screenshot_11]()
-
-
 ## 🤝 Support
 Need help? Have questions? Visit the WordPress support forums or reach out through our website for assistance.
 
