@@ -58,7 +58,7 @@ Modify .highlighted-text to match the plugin's class if it differs.
 
 ## 📝 Examples
 
-<img src="https://github.com/abimaelst/terrostar-highlight-title-text/assets/49216154/370d8603-552b-4c35-aac9-a2b600d1986f" alt="Screenshot_8" style="max-width: 600px;" />
+<img src="https://github.com/abimaelst/terrostar-highlight-title-text/assets/49216154/c38bad74-b31f-4424-bd81-a3979daa4745" alt="Screenshot_8" style="max-width: 600px;" />
 <hr>
 <img src="https://github.com/abimaelst/terrostar-highlight-title-text/assets/49216154/fdd762e5-a821-44bf-961e-6810365efb1b" alt="Screenshot_8" style="max-width: 600px;" />
 
